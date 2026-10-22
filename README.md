@@ -38,9 +38,9 @@ Building and comparing regression models to estimate used-car selling prices bas
 
 ---
 
-### 3. Email Spam Detection with Machine Learning
+### 3. SMS Spam Detection with Machine Learning
 
-Using natural language processing and classification algorithms to distinguish spam messages from legitimate emails.
+Using natural language processing and classification algorithms to distinguish spam text messages from legitimate SMS messages.
 
 **Technologies:** Python, Pandas, NLTK, Scikit-learn
 
@@ -51,4 +51,4 @@ Using natural language processing and classification algorithms to distinguish s
 
 [**View Project & Models**](https://github.com/Sonkhe-Shongwe/Data-Science-Projects/tree/main/Task%204%20%20Email%20Spam%20Detection%20With%20Machine%20Learning)
 
-![Email Spam Detection](./Task%204%20%20Email%20Spam%20Detection%20With%20Machine%20Learning/Spam_ScreenShot.PNG)
+![SMS Spam Detection](./Task%204%20%20Email%20Spam%20Detection%20With%20Machine%20Learning/Spam_ScreenShot.PNG)
