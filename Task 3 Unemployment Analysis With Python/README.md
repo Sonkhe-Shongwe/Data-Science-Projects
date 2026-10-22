@@ -85,4 +85,3 @@ To run it locally:
 
 This is an observational analysis. Differences in observation counts, regional population sizes and repeated monthly measurements affect how comparisons should be interpreted. The results show patterns and associations, not proof that lockdown measures caused a particular change.
 
-The underlying notebook also contains some older narrative descriptions; the dataset dimensions and statistical labels in this README reflect the actual uploaded CSV and analysis code.
