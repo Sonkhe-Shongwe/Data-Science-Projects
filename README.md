@@ -1,6 +1,6 @@
 # Data Science & Analytics Projects
 
-A collection of projects exploring data analysis, statistical techniques and machine learning using Python. Each project includes the source code, datasets, visualisations and findings.
+A collection of projects exploring data analysis, statistical techniques and machine learning using Python. Each project includes source code, datasets, visualisations and findings.
 
 ## Projects
 
@@ -8,7 +8,7 @@ A collection of projects exploring data analysis, statistical techniques and mac
 
 Exploring unemployment trends across India and examining the impact of the COVID-19 pandemic on regional employment patterns.
 
-**Technologies:** Python, Pandas, Matplotlib, Seaborn, SciPy
+**Technologies:** Python, Pandas, Matplotlib, Seaborn, Statistical Analysis
 
 **Highlights:**
 - Analysed 740 records across 28 regions, identifying unemployment trends and regional differences.
