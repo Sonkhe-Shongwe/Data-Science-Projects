@@ -15,7 +15,7 @@ Although the original project folder refers to *email* spam, the included datase
 
 ## Dataset
 
-The included [sms_sms_spam.csv](./sms_sms_spam.csv) contains **5,572 labelled messages**. Each message has a label (`spam` or `ham`) and text content.
+The included [sms_spam.csv](./sms_spam.csv) contains **5,572 labelled messages**. Each message has a label (`spam` or `ham`) and text content.
 
 | Data preparation | Records |
 | --- | ---: |
@@ -66,7 +66,7 @@ To run it locally:
 
 1. Install Python and Jupyter Notebook.
 2. Install the main dependencies: `pip install numpy pandas matplotlib seaborn scikit-learn imbalanced-learn nltk wordcloud notebook`.
-3. Keep `sms_sms_spam.csv` and the notebook in the same directory.
+3. Keep `sms_spam.csv` and the notebook in the same directory.
 4. Open the notebook in Jupyter and run its cells in order. The notebook downloads its required NLTK language resources.
 
 ## Limitations
