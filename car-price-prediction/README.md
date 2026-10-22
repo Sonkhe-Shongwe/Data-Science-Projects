@@ -5,7 +5,7 @@ A Python project that explores the factors associated with used-car selling pric
 **Tools:** Python, Pandas, NumPy, SciPy, Matplotlib, Seaborn, Scikit-learn  
 **Techniques:** Data cleaning, exploratory analysis, feature encoding, regression and model evaluation
 
-![Car Price Prediction](./Car_ScreenShot.PNG)
+![Car Price Prediction](./car_analysis.png)
 
 ## Project objective
 
@@ -13,7 +13,7 @@ Used-car prices vary with age, mileage, condition-related indicators and selling
 
 ## Dataset
 
-The included [car data.csv](./car%20data.csv) contains **301 vehicle records** and **9 columns**.
+The included [car_data.csv](./car_data.csv) contains **301 vehicle records** and **9 columns**.
 
 | Field | Purpose |
 | --- | --- |
@@ -61,13 +61,13 @@ These findings describe patterns in this dataset. Feature importance does not es
 
 ## Explore the notebook
 
-The complete data preparation, charts, modelling and evaluation are in [Oasis_Car_Sales.ipynb](./Oasis_Car_Sales.ipynb).
+The complete data preparation, charts, modelling and evaluation are in [car_price_prediction.ipynb](./car_price_prediction.ipynb).
 
 To run the analysis locally:
 
 1. Install Python and Jupyter Notebook.
 2. Install packages: `pip install numpy pandas scipy matplotlib seaborn scikit-learn notebook`
-3. Keep `Oasis_Car_Sales.ipynb` and `car data.csv` in the same directory.
+3. Keep `car_price_prediction.ipynb` and `car_data.csv` in the same directory.
 4. Open the notebook with Jupyter and run its cells in order.
 
 ## Limitations

@@ -15,9 +15,9 @@ Exploring unemployment trends across India and examining the impact of the COVID
 - Applied statistical tests including Pearson correlation, t-tests and ANOVA.
 - Observed an increase in unemployment from 10.7% to 24.9% during lockdown.
 
-[**View Project & Analysis**](https://github.com/Sonkhe-Shongwe/Data-Science-Projects/tree/main/Task%203%20Unemployment%20Analysis%20With%20Python)
+[**View Project & Analysis**](https://github.com/Sonkhe-Shongwe/Data-Science-Projects/tree/main/unemployment-analysis)
 
-![Unemployment Analysis](./Task%203%20Unemployment%20Analysis%20With%20Python/Unemployment_ScreenShot.png)
+![Unemployment Analysis](./unemployment-analysis/unemployment_analysis.png)
 
 ---
 
@@ -32,9 +32,9 @@ Building and comparing regression models to estimate used-car selling prices bas
 - Evaluated five regression algorithms using R², RMSE and MAE.
 - Extra Trees Regression achieved an R² of 0.92 and RMSE of 1.60.
 
-[**View Project & Models**](https://github.com/Sonkhe-Shongwe/Data-Science-Projects/tree/main/Task%202%20Car%20Price%20Prediction%20With%20Machine%20Learning)
+[**View Project & Models**](https://github.com/Sonkhe-Shongwe/Data-Science-Projects/tree/main/car-price-prediction)
 
-![Car Price Prediction](./Task%202%20Car%20Price%20Prediction%20With%20Machine%20Learning/Car_ScreenShot.PNG)
+![Car Price Prediction](./car-price-prediction/car_analysis.png)
 
 ---
 
@@ -49,6 +49,6 @@ Using natural language processing and classification algorithms to distinguish s
 - Compared Logistic Regression, Random Forest, Extra Trees and Support Vector Machine models.
 - Extra Trees achieved a reported classification accuracy of 97.78%.
 
-[**View Project & Models**](https://github.com/Sonkhe-Shongwe/Data-Science-Projects/tree/main/Task%204%20%20Email%20Spam%20Detection%20With%20Machine%20Learning)
+[**View Project & Models**](https://github.com/Sonkhe-Shongwe/Data-Science-Projects/tree/main/sms-spam-detection)
 
-![SMS Spam Detection](./Task%204%20%20Email%20Spam%20Detection%20With%20Machine%20Learning/Spam_ScreenShot.PNG)
+![SMS Spam Detection](./sms-spam-detection/sms_spam_analysis.png)

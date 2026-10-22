@@ -5,7 +5,7 @@ A text-classification project comparing machine-learning models for identifying 
 **Tools:** Python, Pandas, NLTK, Scikit-learn, imbalanced-learn, Matplotlib, Seaborn  
 **Techniques:** Data cleaning, natural language processing (NLP), TF-IDF, class balancing, classification and model evaluation
 
-![Spam Detection Analysis](./Spam_ScreenShot.PNG)
+![Spam Detection Analysis](./sms_spam_analysis.png)
 
 ## Project objective
 
@@ -15,7 +15,7 @@ Although the original project folder refers to *email* spam, the included datase
 
 ## Dataset
 
-The included [spam.csv](./spam.csv) contains **5,572 labelled messages**. Each message has a label (`spam` or `ham`) and text content.
+The included [sms_sms_spam.csv](./sms_sms_spam.csv) contains **5,572 labelled messages**. Each message has a label (`spam` or `ham`) and text content.
 
 | Data preparation | Records |
 | --- | ---: |
@@ -60,13 +60,13 @@ However, **Logistic Regression had higher spam recall** (0.93 versus 0.88), whil
 
 ## Explore the notebook
 
-The full analysis, visualisations and classification experiments are in [Oasis_Email_spam_Detection.ipynb](./Oasis_Email_spam_Detection.ipynb).
+The full analysis, visualisations and classification experiments are in [sms_spam_detection.ipynb](./sms_spam_detection.ipynb).
 
 To run it locally:
 
 1. Install Python and Jupyter Notebook.
 2. Install the main dependencies: `pip install numpy pandas matplotlib seaborn scikit-learn imbalanced-learn nltk wordcloud notebook`.
-3. Keep `spam.csv` and the notebook in the same directory.
+3. Keep `sms_sms_spam.csv` and the notebook in the same directory.
 4. Open the notebook in Jupyter and run its cells in order. The notebook downloads its required NLTK language resources.
 
 ## Limitations

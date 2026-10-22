@@ -5,7 +5,7 @@ An exploratory and statistical analysis of unemployment and employment trends ac
 **Tools:** Python, Pandas, Matplotlib, Seaborn, SciPy  
 **Analysis:** Data cleaning, exploratory data analysis, time-series trends, hypothesis testing and correlation
 
-![Unemployment Analysis](./Unemployment_ScreenShot.png)
+![Unemployment Analysis](./unemployment_analysis.png)
 
 ## Questions explored
 
@@ -16,7 +16,7 @@ An exploratory and statistical analysis of unemployment and employment trends ac
 
 ## Dataset
 
-The analysis uses the included [Unemployment in India.csv](./Unemployment%20in%20India.csv):
+The analysis uses the included [unemployment_india.csv](./unemployment_india.csv):
 
 | Detail | Value |
 | --- | --- |
@@ -72,13 +72,13 @@ This indicates differences among the regional group means in the sample, but tho
 
 ## Explore the analysis
 
-Open [Oasis_Unemployment_Analysis.ipynb](./Oasis_Unemployment_Analysis.ipynb) to see the preprocessing, charts, statistical tests and written interpretation.
+Open [unemployment_analysis.ipynb](./unemployment_analysis.ipynb) to see the preprocessing, charts, statistical tests and written interpretation.
 
 To run it locally:
 
 1. Install Python and Jupyter Notebook.
 2. Install the required packages: `pip install pandas matplotlib seaborn scipy notebook`
-3. Keep the notebook and `Unemployment in India.csv` in the same folder.
+3. Keep the notebook and `unemployment_india.csv` in the same folder.
 4. Open the notebook with Jupyter and run the cells in order.
 
 ## Limitations
