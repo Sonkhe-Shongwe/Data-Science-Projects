@@ -1,42 +1,74 @@
-# Email Spam Detection With Machine Learning
+# SMS Spam Detection with Machine Learning
 
-## Overview
+A text-classification project comparing machine-learning models for identifying spam and legitimate SMS messages.
 
-In this project, I embarked on a quest to combat the relentless onslaught of email spam by leveraging the power of machine learning. My goal was to develop an intelligent spam detection system capable of distinguishing between legitimate emails and spam messages. By harnessing advanced text classification techniques, I aimed to enhance the email experience for users and safeguard the integrity of digital communication channels.
+**Tools:** Python, Pandas, NLTK, Scikit-learn, imbalanced-learn, Matplotlib, Seaborn  
+**Techniques:** Data cleaning, natural language processing (NLP), TF-IDF, class balancing, classification and model evaluation
 
-[![Email Spam Detection Screenshot](/Task%204%20%20Email%20Spam%20Detection%20With%20Machine%20Learning/Spam_ScreenShot.PNG)](https://github.com/Sonkhe-Shongwe/OIBSIP/blob/main/Task%204%20%20Email%20Spam%20Detection%20With%20Machine%20Learning/Spam_ScreenShot.PNG)
+![Spam Detection Analysis](./Spam_ScreenShot.PNG)
 
-## Key Features
+## Project objective
 
-- **Data Preprocessing:** I meticulously cleaned and preprocessed the email dataset to ensure optimal performance of my machine learning models.
-  
-- **Exploratory Data Analysis:** Through thorough exploration of the data, I uncovered insights and patterns that guided my feature selection and modeling approach.
+Classify short text messages as **spam** or **ham** (legitimate messages) while balancing two competing errors: missing spam and incorrectly flagging legitimate messages.
 
-- **Model Construction:** I experimented with various machine learning algorithms, refining them to achieve peak performance in spam detection.
+Although the original project folder refers to *email* spam, the included dataset contains **SMS messages**, not emails. The reported results therefore describe SMS classification and have not been validated on an email dataset.
 
-- **Model Evaluation:** I rigorously evaluated the performance of each model using metrics such as accuracy, precision, recall, and F1-score.
+## Dataset
 
-## Machine Learning Models
+The included [spam.csv](./spam.csv) contains **5,572 labelled messages**. Each message has a label (`spam` or `ham`) and text content.
 
-I deployed the following machine learning models for email spam detection:
+| Data preparation | Records |
+| --- | ---: |
+| Original messages | 5,572 |
+| Duplicate rows identified and removed | 403 |
+| Messages remaining | **5,169** |
+| Legitimate messages (ham) | 4,516 |
+| Spam messages | 653 |
 
-- Logistic Regression
-- Random Forest
-- Extra Trees
-- Support Vector Machine (SVM)
+The original CSV includes three mostly empty additional columns, which the notebook removes before analysis. The class distribution is imbalanced, with many more legitimate messages than spam messages.
 
-## Best Performing Model
+## Method
 
-After comprehensive evaluation, the **Extra Trees** model emerged as the top performer. It achieved an accuracy score of 97.78%, making it the most reliable model for distinguishing between spam and legitimate emails.
+1. **Prepare the data:** Load the CSV, retain text and class labels, check missing values, and remove duplicate records.
+2. **Explore the messages:** Examine class proportions, message lengths and frequent words.
+3. **Process text:** Clean message content, tokenise words, remove stopwords and apply lemmatisation.
+4. **Build classification pipelines:** Encode text using TF-IDF and apply SMOTE to the training data within the model pipelines to address class imbalance.
+5. **Train and compare models:** Use an 80/20 train/test split (`random_state=42`) to evaluate Logistic Regression, Random Forest, Extra Trees and Support Vector Machine (SVM).
+6. **Evaluate trade-offs:** Compare held-out accuracy and the precision, recall and F1-score for the spam class, alongside confusion matrices and precision-recall/ROC curves.
 
-## Results and Recommendations
+## Model results
 
-- **Model Superiority:** The Extra Trees model demonstrated exceptional performance in accurately classifying spam and non-spam emails, making it the recommended choice for implementing an effective spam detection system.
+The following results are reported in the saved notebook for its **1,034-message test set**:
 
-- **False Alarm Consideration:** While the Extra Trees model may have a slightly higher false positive rate compared to other models, its overall accuracy remains robust, ensuring minimal disruption to legitimate email communication.
+| Model | Accuracy | Spam precision | Spam recall | Spam F1 |
+| --- | ---: | ---: | ---: | ---: |
+| **Extra Trees** | **97.78%** | 0.96 | 0.88 | **0.92** |
+| Random Forest | 97.20% | 0.99 | 0.81 | 0.89 |
+| Logistic Regression | 96.52% | 0.84 | **0.93** | 0.88 |
+| SVM | 96.32% | 0.88 | 0.86 | 0.87 |
 
-- **Significance of Work:** My findings underscored the importance of data-driven approaches in combating email spam and enhancing the user experience. By implementing an intelligent spam detection system, organizations can mitigate the risks associated with spam emails and safeguard their digital communication channels.
+**Extra Trees** achieved the highest test accuracy and spam F1-score in this comparison.
 
-## Conclusion
+However, **Logistic Regression had higher spam recall** (0.93 versus 0.88), while Random Forest had the highest spam precision (0.99). The best choice depends on whether the application prioritises catching more spam or avoiding false alarms.
 
-This project highlights the effectiveness of machine learning in tackling the pervasive problem of email spam. Through rigorous data analysis, model development, and evaluation, I have demonstrated the capabilities of advanced text classification techniques in accurately identifying spam messages. By deploying the recommended Extra Trees model, organizations can bolster their email security measures and provide users with a safer and more reliable email environment.
+## What the analysis demonstrates
+
+- Handling an imbalanced text dataset and preparing it for supervised classification.
+- Building repeatable TF-IDF and model pipelines with training-time resampling.
+- Comparing several models using more than accuracy alone.
+- Interpreting the precision–recall trade-off for practical spam filtering decisions.
+
+## Explore the notebook
+
+The full analysis, visualisations and classification experiments are in [Oasis_Email_spam_Detection.ipynb](./Oasis_Email_spam_Detection.ipynb).
+
+To run it locally:
+
+1. Install Python and Jupyter Notebook.
+2. Install the main dependencies: `pip install numpy pandas matplotlib seaborn scikit-learn imbalanced-learn nltk wordcloud notebook`.
+3. Keep `spam.csv` and the notebook in the same directory.
+4. Open the notebook in Jupyter and run its cells in order. The notebook downloads its required NLTK language resources.
+
+## Limitations
+
+The project is a notebook experiment, **not a deployed spam-filtering service**. Its scores come from one held-out test split on an SMS dataset. Performance on new kinds of messages, including emails, would require separate evaluation. Some older narrative text and metric labels in the notebook also need cleanup to match the calculations and class-specific results.
