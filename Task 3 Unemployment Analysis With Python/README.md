@@ -1,71 +1,88 @@
-# Unemployment Analysis With Python
+# Unemployment Analysis in India
 
-## Overview
+An exploratory and statistical analysis of unemployment and employment trends across India before and during the COVID-19 pandemic.
 
-The project aims to analyze employment trends in India during the COVID-19 pandemic, focusing on how different regions and sectors have been affected. By examining employment rates across urban and rural areas and comparing data from pre-pandemic and pandemic periods, the study provides insights into the nuanced effects of the pandemic on the Indian labor market.
+**Tools:** Python, Pandas, Matplotlib, Seaborn, SciPy  
+**Analysis:** Data cleaning, exploratory data analysis, time-series trends, hypothesis testing and correlation
 
-![Unemployment Analysis Screenshot](/Task%203%20Unemployment%20Analysis%20With%20Python/Unemployement-in-India.png)
+![Unemployment Analysis](./Unemployment_ScreenShot.png)
 
-## Objectives
+## Questions explored
 
-1. **Analyze Employment Trends:** Examine changes in employment rates across India, highlighting differences between urban and rural areas to identify the most impacted regions.
-2. **Evaluate COVID-19 Impact:** Assess the pandemic's effect on employment patterns by comparing data from pre-pandemic and pandemic periods.
-3. **Understand Labor Force Participation:** Investigate how the economic downturn has affected labor market participation, focusing on shifts during the pandemic.
-4. **Statistical Analysis:** Use statistical methods to explore employment rate differences and correlations between labor participation and unemployment rates.
-5. **Inform Policy Recommendations:** Provide insights to help policymakers and stakeholders develop strategies for economic recovery and support affected workers.
-   
-## Data Loading and Preprocessing
+- How did unemployment and labour force participation change over time?
+- How did employment patterns differ between rural and urban areas?
+- Were differences in estimated employment across areas and regions statistically significant?
+- Was labour force participation associated with estimated employment counts?
 
-The project begins with loading and preprocessing the employment data, ensuring its quality and preparing it for analysis.
+## Dataset
 
-## Statistical Analysis
+The analysis uses the included [Unemployment in India.csv](./Unemployment%20in%20India.csv):
 
-### Hypothesis Testing
+| Detail | Value |
+| --- | --- |
+| Records | 740 |
+| Regions | 28 |
+| Period | May 2019 – June 2020 (14 months) |
+| Geographic breakdown | Region and rural/urban area |
+| Main measures | Estimated unemployment rate (%), estimated employed count, estimated labour participation rate (%) |
 
-#### Hypothesis 1: Employment Rate Difference by Area
+The dataset contains monthly observations for individual regions and areas, rather than a single national monthly total.
 
-- **H0:** There is no significant difference in the average employment rates between rural and urban areas.
-- **H1:** There is a significant difference in the average employment rates between rural and urban areas.
+## Approach
 
-Results: 
+1. **Prepare the data:** Load the CSV, standardise column names, check for missing values and duplicates, parse dates and normalise category labels.
+2. **Explore the trends:** Compare unemployment rates by region and month, examine labour participation and visualise rural-versus-urban employment patterns.
+3. **Test relationships:** Apply an independent-samples t-test, Pearson correlation and one-way ANOVA to the estimated employment and labour participation measures.
+4. **Interpret the results:** Separate descriptive patterns from statistical evidence and consider limitations in the comparisons.
 
-| Statistic    | Value                              |
-|--------------|------------------------------------|
-| T-statistic  | 10.45                              |
-| P-value      | $$6.46 \times 10^{-24}$$           |
+## Key findings
 
-#### Hypothesis 2: Labor Participation Rate and Employment Rate Correlation
+### Unemployment increased sharply during the pandemic period
 
-- **H0:** There is no correlation between the labor participation rate and the employment rate.
-- **H1:** There is a correlation between the labor participation rate and the employment rate.
+The mean unemployment rate across the observations available for each month rose from **10.70% in March 2020** to **23.64% in April** and **24.88% in May**, before falling to **11.90% in June**.
 
-Results: 
+These are averages of the dataset's regional/area observations for each month, not population-weighted national unemployment estimates.
 
-| Statistic            | Value                         |
-|----------------------|-------------------------------|
-| Correlation Coefficient | 0.011                     |
-| P-value              | 0.759                         |
+### Rural and urban estimated employment counts differed
 
-#### Hypothesis 3: Variations in Employment Rates Across Different Regions (ANOVA Test)
+The independent-samples t-test comparing **estimated employed counts** between rural and urban observations reported:
 
-- **H0:** There are no significant differences in the average employment rates across different regions.
-- **H1:** There are significant differences in the average employment rates across different regions.
+- **t-statistic:** 10.45
+- **p-value:** 6.46 × 10⁻²⁴
 
-Results: 
+The difference is statistically significant in this sample. Because the test compares counts rather than employment rates, it does not establish that one area's employment *rate* is higher.
 
-| Statistic    | Value                              |
-|--------------|------------------------------------|
-| F-statistic  | 58.23                              |
-| P-value      | $$3.21 \times 10^{-160}$$          |
+### Labour participation and employment count showed little linear association
 
-## Discussion and Interpretation
+Pearson correlation between the estimated labour participation rate and estimated employed count returned:
 
-The section provides insights into the statistical analysis results, discussing observed differences in employment rates, correlation findings, and regional disparities, along with their implications.
+- **Correlation (r):** 0.011
+- **p-value:** 0.759
 
-## Conclusion
+The sample showed no statistically significant linear correlation between these two measures.
 
-The conclusion summarizes key findings, recommendations, and future directions, emphasizing the importance of understanding employment dynamics during the pandemic and suggesting avenues for further research.
+### Estimated employment counts varied across regions
 
----
+A one-way ANOVA of **estimated employed counts** by region returned:
 
-This README provides a structured overview of the project, outlining its objectives, methodology, findings, and implications in a clear and concise manner.
+- **F-statistic:** 58.23
+- **p-value:** 3.21 × 10⁻¹⁶⁰
+
+This indicates differences among the regional group means in the sample, but those differences may also reflect regional population sizes.
+
+## Explore the analysis
+
+Open [Oasis_Unemployment_Analysis.ipynb](./Oasis_Unemployment_Analysis.ipynb) to see the preprocessing, charts, statistical tests and written interpretation.
+
+To run it locally:
+
+1. Install Python and Jupyter Notebook.
+2. Install the required packages: `pip install pandas matplotlib seaborn scipy notebook`
+3. Keep the notebook and `Unemployment in India.csv` in the same folder.
+4. Open the notebook with Jupyter and run the cells in order.
+
+## Limitations
+
+This is an observational analysis. Differences in observation counts, regional population sizes and repeated monthly measurements affect how comparisons should be interpreted. The results show patterns and associations, not proof that lockdown measures caused a particular change.
+
+The underlying notebook also contains some older narrative descriptions; the dataset dimensions and statistical labels in this README reflect the actual uploaded CSV and analysis code.
