@@ -1,37 +1,75 @@
-# Car Price Prediction With Machine Learning
+# Car Price Prediction with Machine Learning
 
-## Overview
+A Python project that explores the factors associated with used-car selling prices and compares five regression models for price prediction.
 
-This project utilizes machine learning techniques to predict the selling prices of cars based on various attributes. By analyzing car features and developing predictive models, valuable insights are generated for buyers and sellers in the automotive market.
+**Tools:** Python, Pandas, NumPy, SciPy, Matplotlib, Seaborn, Scikit-learn  
+**Techniques:** Data cleaning, exploratory analysis, feature encoding, regression and model evaluation
 
-[![Car Price Prediction Screenshot](/Task%202%20Car%20Price%20Prediction%20With%20Machine%20Learning/Car_ScreenShot.PNG)](https://raw.githubusercontent.com/Sonkhe-Shongwe/OIBSIP/main/Task%202%20Car%20Price%20Prediction%20With%20Machine%20Learning/Car_ScreenShot.PNG)
+![Car Price Prediction](./Car_ScreenShot.PNG)
 
+## Project objective
 
-## Key Features
+Used-car prices vary with age, mileage, condition-related indicators and selling arrangements. This project investigates the relationships in a vehicle dataset and tests how accurately different regression methods can estimate selling prices.
 
-- Exploratory analysis of car attributes.
-- Development of predictive models using machine learning algorithms.
-- Evaluation of model performance and selection of the best-performing model.
-- Visualization of insights through intuitive charts and graphs.
+## Dataset
 
-## Regression Models
+The included [car data.csv](./car%20data.csv) contains **301 vehicle records** and **9 columns**.
 
-The following regression models were used for predicting car prices:
+| Field | Purpose |
+| --- | --- |
+| `Selling_Price` | Target variable: recorded vehicle selling price |
+| `Present_Price` | Vehicle's listed current price |
+| `Year` | Vehicle year |
+| `Driven_kms` | Recorded mileage |
+| `Fuel_Type` | Petrol, diesel or CNG |
+| `Selling_type` | Dealer or individual |
+| `Transmission` | Manual or automatic |
+| `Owner` | Previous-owner count |
+| `Car_Name` | Vehicle name, excluded from model features |
 
-- Linear Regression
-- Lasso Regression
-- Decision Tree Regression
-- Random Forest Regression
-- Extra Trees Regression
+The notebook identifies **two duplicate records** and removes **one high-`Present_Price` observation**, leaving **298 rows for modelling**.
 
-The **Extra Trees Regression model** was identified as the best-performing model based on evaluation metrics such as Root Mean Squared Error (RMSE) and R-squared (R^2). The model achieved an RMSE of 1.60 and an R-squared of 0.92.
+## Approach
 
-## Results
+1. **Data quality:** Check missing values and duplicates, remove duplicate rows and inspect feature distributions.
+2. **Preparation:** Encode categorical variables and examine a high-price observation before excluding it.
+3. **Exploratory analysis:** Compare selling prices across vehicle years, fuel types and seller types; examine correlations with mileage and present price.
+4. **Modelling:** Use an 80/20 train/test split (`random_state=42`) and fit five regression models.
+5. **Evaluation:** Compare model performance using mean absolute error (MAE), root mean squared error (RMSE) and R²; inspect feature importance and prediction residuals.
 
-- Identified significant relationships between car attributes and selling prices.
-- Evaluated the performance of various regression models and determined that the **Extra Trees Regression model** outperformed others based on evaluation metrics such as RMSE and R-squared.
-- Provided insights and recommendations for stakeholders in the automotive industry.
+## Model comparison
 
-## Conclusion
+The following values are from the notebook's held-out test set (**60 records**):
 
-This project demonstrates the effectiveness of machine learning in predicting car prices and provides valuable insights for buyers and sellers. By leveraging predictive modeling techniques and data analysis, stakeholders can make informed decisions and optimize pricing strategies in the automotive market.
+| Model | R² | RMSE | MAE |
+| --- | ---: | ---: | ---: |
+| **Extra Trees** | **0.918** | **1.60** | **0.73** |
+| Random Forest | 0.862 | 2.08 | 0.96 |
+| Decision Tree | 0.847 | 2.19 | 1.23 |
+| Linear Regression | 0.782 | 2.61 | 1.63 |
+| Lasso Regression | 0.779 | 2.63 | 1.67 |
+
+**Extra Trees Regression** performed best on this test split, explaining approximately **92% of the variation in selling prices** in the test data.
+
+## Key observations
+
+- **Present price** showed a strong positive relationship with selling price in the exploratory analysis.
+- The Extra Trees model ranked **present price** as its most important input, followed by seller type.
+- Prediction errors were generally smaller for lower-priced vehicles; the residual analysis identified larger errors for some observations.
+
+These findings describe patterns in this dataset. Feature importance does not establish that a variable causes a price change.
+
+## Explore the notebook
+
+The complete data preparation, charts, modelling and evaluation are in [Oasis_Car_Sales.ipynb](./Oasis_Car_Sales.ipynb).
+
+To run the analysis locally:
+
+1. Install Python and Jupyter Notebook.
+2. Install packages: `pip install numpy pandas scipy matplotlib seaborn scikit-learn notebook`
+3. Keep `Oasis_Car_Sales.ipynb` and `car data.csv` in the same directory.
+4. Open the notebook with Jupyter and run its cells in order.
+
+## Limitations
+
+The dataset is small, and the model comparison relies primarily on one train/test split. Results may vary on new datasets and should not be treated as evidence of production readiness. The notebook also labels a cross-validation **mean squared error** output as "RMSE"; that label should be corrected in the notebook before interpreting its cross-validation results.
