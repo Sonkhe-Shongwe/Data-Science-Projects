@@ -5,7 +5,22 @@ A Python project that explores the factors associated with used-car selling pric
 **Tools:** Python, Pandas, NumPy, SciPy, Matplotlib, Seaborn, Scikit-learn  
 **Techniques:** Data cleaning, exploratory analysis, feature encoding, regression and model evaluation
 
-![Car Price Prediction](./car_analysis.png)
+![Car price prediction portfolio overview](./assets/car_price_portfolio_overview.svg)
+
+### Portfolio visuals
+
+- [Project overview (SVG)](./assets/car_price_portfolio_overview.svg), with held-out model scores and an actual-versus-predicted scatter plot.
+- [Model comparison (SVG)](./assets/car_price_model_comparison.svg), comparing test-set RMSE for all five models.
+- Run `python build_portfolio_media.py` from this folder to regenerate editable-quality PNG images and a CSV of model scores. Install `pandas numpy matplotlib scikit-learn` first.
+- The new reproduction script fixes the previously unseeded Decision Tree (`random_state=42`), so **that single model's score differs from the original notebook run** (new R² ~0.865 versus earlier ~0.847). The best Extra Trees model remains R² ~0.918, RMSE ~1.60 and MAE ~0.73.
+
+The figures describe one held-out split of a small dataset, not deployment performance. Price units are those in the source file, not a verified currency.
+
+<details><summary>Original exploratory visualisation</summary>
+
+![Original car analysis](./car_analysis.png)
+
+</details>
 
 ## Project objective
 
