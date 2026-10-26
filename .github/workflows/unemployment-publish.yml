@@ -1,0 +1,83 @@
+name: Validate and publish unemployment research
+on:
+  push:
+    paths:
+      - 'unemployment-analysis/**'
+      - '.github/workflows/unemployment-publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Decode and verify project visuals
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+          import hashlib
+          files = {
+              '00_portfolio_cover.png': 'c586047cc4d78d9bf39a73fe00cf5503cee3113da4b413176413c1ac99942b1c',
+              '01_unemployment_trend.png': '44d1054ee75ea1be8970f64d6fed8ba7923049e1314cc8f64dffa6adf535f2d4',
+              '02_three_indicators.png': 'cfe1d2b218b866fe67a2c32c25dffa17f70b109096ec3804be47180d98cbf8df',
+              '03_geographic_changes.png': '163a797eecfc66e1c9351437118acc638beb60977bf515568fe6c9ca29a4f31e',
+              '04_rural_urban_comparison.png': '5ee648f51e0b436a1e4aac6c9d0a7a53ea82fcb0623183c72b0b97d155596741',
+              '05_coverage_matrix.png': 'abc833ed2f50089de63fa2a1e4c902da311235ef749cb768ebd02f3756d654fb',
+              '06_june_recovery.png': 'b5e56c335c59f8983849808ddbba3c16cb6324ce986b9b5426b67ded85a60c3c',
+              '07_composition_sensitivity.png': '4bfc2940f5c5c72f59012fbbbcf5853812f9f4daea10fffe52e3ccd68896a6ff',
+          }
+          root = Path('unemployment-analysis/assets')
+          decoded = 0
+          for filename, expected in files.items():
+              dest = root / filename
+              encoded = root / (filename + '.b64')
+              if encoded.exists():
+                  raw = base64.b64decode(encoded.read_text(encoding='ascii'), validate=True)
+                  assert raw.startswith(bytes.fromhex('89504e470d0a1a0a')), filename
+                  assert hashlib.sha256(raw).hexdigest() == expected, filename
+                  dest.write_bytes(raw)
+                  encoded.unlink()
+                  decoded += 1
+              else:
+                  assert dest.exists(), f'Missing project asset {dest}'
+                  assert hashlib.sha256(dest.read_bytes()).hexdigest() == expected, filename
+          print(f'Validated {len(files)} exact original images, decoded {decoded}')
+          PY
+
+      - name: Validate executed notebook and project files
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          root = Path('unemployment-analysis')
+          notebook = json.loads((root/'unemployment_analysis.ipynb').read_text(encoding='utf8'))
+          assert notebook['nbformat'] == 4
+          assert len(notebook['cells']) == 31
+          codes = [c for c in notebook['cells'] if c['cell_type'] == 'code']
+          assert len(codes) == 15
+          assert all(len(c.get('outputs',[])) > 0 for c in codes)
+          assert (root/'src/analysis.py').exists() and (root/'src/visuals.py').exists()
+          assert len((root/'unemployment_india.csv').read_text(encoding='utf8').splitlines()) == 741
+          print('Executed notebook, analysis files and original dataset verified')
+          PY
+
+      - name: Commit verified PNG images
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A unemployment-analysis/assets
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish eight verified unemployment project PNG visualisations'
+            git push
+          fi
