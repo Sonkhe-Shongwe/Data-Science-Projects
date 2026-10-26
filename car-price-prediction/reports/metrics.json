@@ -1,0 +1,67 @@
+{
+  "audit": {
+    "source_rows": 301,
+    "missing_cells": 0,
+    "exact_duplicates": 2,
+    "source_model_names": 98,
+    "analytical_rows": 299,
+    "cars": 198,
+    "two_wheelers": 101,
+    "model_names": 98,
+    "vehicle_year_min": 2003,
+    "vehicle_year_max": 2018,
+    "selling_price_min": 0.1,
+    "selling_price_max": 35.0,
+    "max_reference_price_model": "land cruiser",
+    "max_reference_price": 92.6,
+    "car_individual_pct": 2.5,
+    "two_wheeler_individual_pct": 100.0,
+    "development_rows": 239,
+    "test_rows": 60
+  },
+  "champion": "Random forest",
+  "final_test": {
+    "MAE": 0.7018872180134679,
+    "RMSE": 1.4951420628111034,
+    "MedAE": 0.34579087602212677,
+    "R2": 0.9342350555214465,
+    "P90_AE": 1.2931042791005292
+  },
+  "reference_ablation": [
+    {
+      "Experiment": "With reference price",
+      "CV_MAE": 0.6844227442710269,
+      "CV_RMSE": 1.5942581492038244,
+      "CV_R2": 0.8810286020438924
+    },
+    {
+      "Experiment": "Without reference price",
+      "CV_MAE": 1.6172106079269675,
+      "CV_RMSE": 2.9366703267185317,
+      "CV_R2": 0.5917285819734543
+    }
+  ],
+  "unseen_model_stress": {
+    "count": 69,
+    "unique_unseen_names": 20,
+    "metrics": {
+      "MAE": 0.5054155662909284,
+      "RMSE": 1.2464907729296157,
+      "MedAE": 0.17334457671957848,
+      "R2": 0.6293100633517008,
+      "P90_AE": 0.9481944929453263
+    }
+  },
+  "outlier_sensitivity": {
+    "largest_reference_price_record_in_development": true,
+    "development_CV_MAE_without_record": 0.6108941022482796,
+    "development_CV_MAE_with_record": 0.6844227442710269
+  },
+  "retention_descriptive": {
+    "overall_median_ratio": 0.6535038932146829,
+    "ratio_over_one": 0,
+    "car_median_selling": 5.25,
+    "two_wheeler_median_selling": 0.5
+  },
+  "evaluation_protocol": "Five shuffled K-fold splits on 80% development; winner by CV MAE; one 20% stratified test evaluation. Separate unfamiliar-name stress split."
+}
